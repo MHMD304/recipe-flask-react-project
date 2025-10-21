@@ -39,6 +39,7 @@ class Recipe(db.Model):
 """  
 
 class User(db.Model):
+    
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(25),nullable = False,unique=True)
     email = db.Column(db.String(80),nullable = False)
@@ -46,6 +47,18 @@ class User(db.Model):
     
     def __repr__(self):
         return f"<User {self.username}>"
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    
+    def update(self,password):
+        self.password = password
+        db.session.commit()
     
     
 
