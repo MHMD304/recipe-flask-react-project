@@ -2,7 +2,12 @@ from flask_restx import Api,Resource,Namespace,fields
 from models import User
 from flask import request,jsonify
 from werkzeug.security import generate_password_hash , check_password_hash 
-from flask_jwt_extended import create_access_token,create_refresh_token
+from flask_jwt_extended import (
+                        create_access_token,
+                        create_refresh_token,
+                        jwt_required,
+                        get_jwt_identity
+                        )
 auth_namespace = Namespace('auth',description = "A namespace for our Auhtentication")
 
 signup_model = auth_namespace.model(
@@ -66,3 +71,13 @@ class LoginResource(Resource):
             "accessToken":access_token,
             "refresh_token":refresh_token
         })
+        
+@auth_namespace.route('/refresh')
+class RefreshResource(Resource):
+    @jwt_required(refresh=True)
+    def post(self):
+        user  = get_jwt_identity()
+        new_access_token = create_access_token(identity=user)
+        return{
+            "access_token":new_access_token
+        },200
