@@ -20,4 +20,10 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = False
+    TESTING = True
+    SQLALCHEMY_ENGINE_OPTIONS = {
+    "connect_args": {"check_same_thread": False}
+    }   

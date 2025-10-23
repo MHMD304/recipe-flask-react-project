@@ -20,7 +20,7 @@ class RecipesResource(Resource):
     def get(self) :    
         """ Get all recipes """
         recipes = Recipe.query.all()
-        return recipes
+        return recipes,200
     
     @recipe_namespace.marshal_with(recipe_model)
     @recipe_namespace.expect(recipe_model)  # to be able to make the request from swagger
@@ -36,8 +36,8 @@ class RecipesResource(Resource):
         
         new_recipe.save()
         
-        return new_recipe,201
-
+        return (new_recipe,201)
+    
 @recipe_namespace.route('/recipe/<int:id>')
 class RecipeResource(Resource):
     
@@ -45,7 +45,7 @@ class RecipeResource(Resource):
     def get(self,id):
         """ Get recipe by id """
         recipe = Recipe.query.get_or_404(id)
-        return recipe
+        return recipe,200
         
     @jwt_required()
     @recipe_namespace.marshal_with(recipe_model)
@@ -59,7 +59,7 @@ class RecipeResource(Resource):
             
         recipe.update(title,description)
             
-        return recipe,201
+        return (recipe,200)
         
     @recipe_namespace.marshal_with(recipe_model)
     @jwt_required()
@@ -68,6 +68,6 @@ class RecipeResource(Resource):
         recipe = Recipe.query.get_or_404(id)
         
         recipe.delete()
-        return recipe,201
+        return (recipe,200)
         
     
