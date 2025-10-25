@@ -91,4 +91,4 @@ A minimal full‑stack project with a Flask REST API and a React frontend. The b
 
 ## License
 
-- Add a LICENSE file if you plan to open source (e.g., MIT).
+This project is licensed under the MIT License. See the `LICENSE` file for details.
