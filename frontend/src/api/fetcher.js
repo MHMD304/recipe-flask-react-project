@@ -91,7 +91,7 @@ export const logout = () => {
 // Public routes
 export const getAllRecipes = () => fetchData(RECIPE_BASE_URL, '/recipes');
 export const getRecipeById = (id) =>
-  fetchData(RECIPE_BASE_URL, `/recipes/${id}`);
+  fetchData(RECIPE_BASE_URL, `/recipe/${id}`);
 
 // Protected routes (require access token)
 export const createRecipe = (recipeData) =>
@@ -101,10 +101,10 @@ export const createRecipe = (recipeData) =>
   }, true);
 
 export const editRecipe = (id, updatedRecipe) =>
-  fetchData(RECIPE_BASE_URL, `/recipes/${id}`, {
+  fetchData(RECIPE_BASE_URL, `/recipe/${id}`, {
     method: "PUT",
     body: JSON.stringify(updatedRecipe),
   }, true);
 
 export const deleteRecipe = (id) =>
-  fetchData(RECIPE_BASE_URL, `/recipes/${id}`, { method: "DELETE" }, true);
+  fetchData(RECIPE_BASE_URL, `/recipe/${id}`, { method: "DELETE" }, true);

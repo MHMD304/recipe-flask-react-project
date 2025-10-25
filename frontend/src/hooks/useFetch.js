@@ -14,5 +14,5 @@ export const useFetch = (fetchFunction, deps = []) => {
       .finally(() => setLoading(false));
   }, deps);
 
-  return { data, loading, error };
+  return { data,setData, loading,setLoading, error,setError };
 };
