@@ -11,9 +11,6 @@ A minimal full‑stack project with a Flask REST API and a React frontend. The b
 
 - backend/
   - main.py, run.py, models.py, recipes.py, auth.py, exts.py, config.py
-  - migrations/ (Alembic migrations)
-  - dev.db (SQLite dev database; ignored in git)
-  - .env (local only; do not commit)
   - .env.example (template)
   - requirements.txt
 - frontend/
